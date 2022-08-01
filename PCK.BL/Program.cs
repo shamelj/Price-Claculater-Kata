@@ -1,11 +1,17 @@
 ﻿using PCK.BL;
 var book = new Product("The Little Prince", 12345, new(20.25));
 var priceCalculater = new ProductPriceCalculater(book);
-Log(book, priceCalculater);
-ProductPriceCalculater.FlatRateTax = 0.21;
-Log(book, priceCalculater);
+ProductPriceCalculater.RelativeDiscountRate = 0.15;
 
-static void Log(Product book, ProductPriceCalculater priceCalculater)
+Log(priceCalculater);
+
+static void Log(ProductPriceCalculater priceCalculater)
 {
-    Console.WriteLine($"Product price reported as {book.BasePrice} before tax and {priceCalculater.PriceAfterTax()} after {ProductPriceCalculater.FlatRateTax * 100}% tax.");
+    var flatRateTax = ProductPriceCalculater.FlatRateTax * 100;
+    var relativeDiscountRate = ProductPriceCalculater.RelativeDiscountRate * 100;
+    var tax = priceCalculater.CalculateFlatTax();
+    var discount = priceCalculater.CalculateRelativeDiscount();
+    var basePrice = priceCalculater.BasePrice();
+    var netPrice = priceCalculater.CalculateNetPrice();
+    Console.WriteLine($"Tax={flatRateTax}%, discount={relativeDiscountRate}% Tax amount = {tax}; Discount amount = {discount} Price before = {basePrice}, price after = {netPrice}");
 }
