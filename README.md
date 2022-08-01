@@ -1,1 +1,1 @@
-# PCK.BL
+# Price Calculater Kata
