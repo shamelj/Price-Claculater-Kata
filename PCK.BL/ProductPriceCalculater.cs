@@ -16,12 +16,15 @@ namespace PCK.BL
             Price tax = CalculateFlatTax();
             Price discount = CalculateRelativeDiscount();
             var netPrice = Product.BasePrice + tax - discount;
+            Report.ReportNetPrice(netPrice);
             return netPrice;
         }
 
         public Price CalculateRelativeDiscount()
         {
-            return new(Product.BasePrice.Value * RelativeDiscountRate);
+            var discount = new Price(Product.BasePrice.Value * RelativeDiscountRate);
+            Report.ReprotDicount(discount);
+            return discount;
         }
 
         public Price CalculateFlatTax()
