@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCK.BLTEST", "PCK.BLTEST\PC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCK.BL", "PCK.BL\PCK.BL.csproj", "{E89A0C34-E203-4F4D-BC5A-0F94C12AAD19}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCK.Utility", "PCK.Utility\PCK.Utility.csproj", "{0E599292-33A7-4BB8-A71B-CC3EC8ED4270}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E89A0C34-E203-4F4D-BC5A-0F94C12AAD19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E89A0C34-E203-4F4D-BC5A-0F94C12AAD19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E89A0C34-E203-4F4D-BC5A-0F94C12AAD19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E599292-33A7-4BB8-A71B-CC3EC8ED4270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E599292-33A7-4BB8-A71B-CC3EC8ED4270}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E599292-33A7-4BB8-A71B-CC3EC8ED4270}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E599292-33A7-4BB8-A71B-CC3EC8ED4270}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
