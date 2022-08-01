@@ -2,8 +2,7 @@
 var book = new Product("The Little Prince", 12345, new(20.25));
 var priceCalculater = new ProductPriceCalculater(book);
 ProductPriceCalculater.RelativeDiscountRate = 0.15;
-
-Log(priceCalculater);
+priceCalculater.CalculateNetPrice();
 
 static void Log(ProductPriceCalculater priceCalculater)
 {
