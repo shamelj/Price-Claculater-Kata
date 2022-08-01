@@ -14,6 +14,7 @@
             }
         }
         public Price(double value) => Value = value;
+        public Price(Price price) => Value = price.Value;
         public static Price operator +(Price p1, Price p2) => new(p1.Value + p2.Value);
         public static Price operator -(Price p1, Price p2) => new(p1.Value - p2.Value);
         public static Price operator /(Price p1, Price p2) => new(p1.Value / p2.Value);
