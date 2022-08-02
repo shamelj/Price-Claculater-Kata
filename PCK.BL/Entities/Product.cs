@@ -1,6 +1,6 @@
 ﻿using PCK.Utility;
 
-namespace PCK.BL
+namespace PCK.BL.Entities
 {
     public class Product
     {
@@ -9,9 +9,9 @@ namespace PCK.BL
         public Price BasePrice { get; set; }
         public Product(string name, uint UPC, Price basePrice)
         {
-            this.Name = name;
+            Name = name;
             this.UPC = UPC;
-            this.BasePrice = basePrice;
+            BasePrice = basePrice;
         }
     }
 }
