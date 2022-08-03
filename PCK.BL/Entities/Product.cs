@@ -13,5 +13,12 @@ namespace PCK.BL.Entities
             this.UPC = UPC;
             BasePrice = basePrice;
         }
+        public Product(Product inputProduct)
+        {
+            this.Name = new(inputProduct.Name);
+            this.UPC = inputProduct.UPC;
+            this.BasePrice = new(inputProduct.BasePrice);
+
+        }
     }
 }
