@@ -3,16 +3,20 @@ using PCK.Utility;
 
 namespace PCK.BL.Entities
 {
-    public class TaxCalculator : ITaxCalculator
+    public class TaxCalculator : IFlatTaxCalculator
     {
-        public static double FlatRateTax { get; set; } = 0.2;
+        private static double flatRateTax = 0.2;
 
-        public Price CalculateTax(Product product)
+        public static double FlatRateTax
         {
-            var flatTax = CalculateFlatTax(product);
-            return flatTax;
+            get => flatRateTax;
+            set
+            {
+                if (flatRateTax < 0.0) throw new ArgumentException("Please enter a positive percentage.");
+                flatRateTax = value;
+            }
         }
-
+        
         public Price CalculateFlatTax(Product product)
         {
             var flatTax = new Price(FlatRateTax * product.BasePrice.Value);

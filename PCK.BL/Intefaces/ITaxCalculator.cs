@@ -2,8 +2,8 @@
 using PCK.BL.Entities;
 namespace PCK.BL.Intefaces
 {
-    public interface ITaxCalculator
+    public interface IFlatTaxCalculator
     {
-        Price CalculateTax(Product product);
+        Price CalculateFlatTax(Product product);
     }
 }

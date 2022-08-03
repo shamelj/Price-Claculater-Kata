@@ -1,5 +1,10 @@
 ﻿namespace PCK.BL.Entities
 {
+    public enum DiscountType
+    {
+        Preceeding,
+        NonPreceeding
+    }
     public class Discount
     {
         private double _rate;
@@ -14,11 +19,13 @@
                 _rate = value;
             }
         }
+        public DiscountType Type { get; set; }
         public uint UPC { get; set; }
-        public Discount(double rate, uint upc)
+        public Discount(double rate, uint upc, DiscountType type )
         {
             Rate = rate;
             UPC = upc;
+            Type = type;
         }
     }
 }

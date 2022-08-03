@@ -8,9 +8,9 @@ var book = new Product("The Little Prince", 12345, new(20.25));
 
 var discountsRepository = new CacheDiscountsRepository();
 var taxCalculator = new TaxCalculator();
-var discountCalculator = new DiscountCalculater(discountsRepository);
-DiscountCalculater.RelativeDiscountRate = 0.15;
-discountsRepository.Save(new(0.07, 12345));
+var discountCalculator = new DiscountCalculator(discountsRepository);
+DiscountCalculator.RelativeDiscountRate = 0.15;
+discountsRepository.Save(new(0.07, 12345, DiscountType.Preceeding));
 var reporter = new Reporter();
-var netPriceCalculator = new NetPriceCalculater(discountCalculator,taxCalculator,reporter);
+var netPriceCalculator = new NetPriceCalculator(discountCalculator, taxCalculator, reporter);
 netPriceCalculator.CalculateNetPrice(book);
