@@ -16,7 +16,7 @@ namespace PCK.BL.Entities
                 flatRateTax = value;
             }
         }
-        
+
         public Price CalculateFlatTax(Product product)
         {
             var flatTax = new Price(FlatRateTax * product.BasePrice.Value);

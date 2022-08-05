@@ -21,7 +21,7 @@
         }
         public DiscountType Type { get; set; }
         public uint UPC { get; set; }
-        public Discount(double rate, uint upc, DiscountType type )
+        public Discount(double rate, uint upc, DiscountType type)
         {
             Rate = rate;
             UPC = upc;
