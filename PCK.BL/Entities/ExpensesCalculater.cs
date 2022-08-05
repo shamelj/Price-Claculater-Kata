@@ -29,7 +29,8 @@ namespace PCK.BL.Entities
             var totalRelativeExpenses = ratesSum * product.BasePrice.Value;
             return new(totalRelativeExpenses);
         }
-        public IEnumerable<KeyValuePair<string,Price>> AllExpenses(Product product){
+        public IEnumerable<KeyValuePair<string, Price>> AllExpensesData(Product product)
+        {
             var absoluteExpenses = AbsoluteExpensesRepository
                 .ReadAll()
                 .Select((expense) => KeyValuePair.Create(expense.Description, expense.Amount));

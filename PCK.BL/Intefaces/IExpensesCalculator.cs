@@ -7,7 +7,7 @@ namespace PCK.BL.Intefaces
     {
         Price CalculateAbsoluteExpenses();
         Price CalculateRelativeExpenses(Product product);
-        IEnumerable<KeyValuePair<string, Price>> AllExpenses(Product product);
+        IEnumerable<KeyValuePair<string, Price>> AllExpensesData(Product product);
 
     }
 }

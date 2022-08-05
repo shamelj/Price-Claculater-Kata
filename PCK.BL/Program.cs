@@ -1,7 +1,4 @@
 ﻿using PCK.BL.Entities;
-using PCK.BL.Intefaces;
-using PCK.Utility;
-using PCK.BL;
 using PCK.BL.Repositories;
 
 var book = new Product("The Little Prince", 12345, new(20.25));
@@ -13,6 +10,7 @@ var relativeExpensesRepository = new CacheRelativeExpensesRepository();
 
 
 // calculaters
+var capCalculator = new RelativeCapCalculator(0.2);
 var taxCalculator = new TaxCalculator(); TaxCalculator.FlatRateTax = .21;
 var discountCalculator = new MultiplicativeDiscountCalculator(discountsRepository);
 //var discountCalculator = new AdditiveDiscountCalculator(discountsRepository);
@@ -26,5 +24,5 @@ relativeExpensesRepository.Save(new("Packaging Cost", .01));
 
 // Reporter
 var reporter = new Reporter();
-var netPriceCalculator = new NetPriceCalculator(discountCalculator, taxCalculator, reporter, expensesCalculater);
+var netPriceCalculator = new NetPriceCalculator(discountCalculator, taxCalculator, reporter, expensesCalculater,capCalculator);
 netPriceCalculator.CalculateNetPrice(book);
