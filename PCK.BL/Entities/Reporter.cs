@@ -14,5 +14,19 @@ namespace PCK.BL.Entities
         {
             Console.WriteLine($"Price {amount.Value}");
         }
+
+        public void Summary(Price basePrice, Price flatTax, Price totalDiscount, IEnumerable<KeyValuePair<string, Price>> allExpenses, Price netPrice)
+        {
+            Console.WriteLine($"Cost = {basePrice}");
+            Console.WriteLine($"Tax = {flatTax}");
+            Console.WriteLine($"Discounts = {totalDiscount}");
+            foreach (var expense in allExpenses)
+            {
+                Console.WriteLine($"{expense.Key} = {expense.Value}");
+            }
+            Console.WriteLine($"TOTAL = {netPrice}");
+
+
+        }
     }
 }

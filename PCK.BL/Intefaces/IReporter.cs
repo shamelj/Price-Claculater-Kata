@@ -6,5 +6,6 @@ namespace PCK.BL.Intefaces
     {
         void Discounted(Price amount);
         void NetPrice(Price amount);
+        void Summary(Price basePrice, Price flatTax, Price totalDiscount, IEnumerable<KeyValuePair<string, Price>> allExpenses, Price netPrice);
     }
 }
