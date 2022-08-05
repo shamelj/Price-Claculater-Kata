@@ -2,10 +2,8 @@
 
 namespace PCK.BL.Intefaces
 {
-    public interface IDiscountsRepository
+    public interface IDiscountsRepository : IGenericRepository<Discount>
     {
-        IEnumerable<Discount> ReadAll();
         IEnumerable<Discount> ReadAll(uint upc);
-        void Save(Discount discount);
     }
 }
