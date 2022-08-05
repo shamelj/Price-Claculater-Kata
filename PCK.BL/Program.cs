@@ -14,9 +14,11 @@ var relativeExpensesRepository = new CacheRelativeExpensesRepository();
 
 // calculaters
 var taxCalculator = new TaxCalculator(); TaxCalculator.FlatRateTax = .21;
-var discountCalculator = new DiscountCalculator(discountsRepository);
+var discountCalculator = new MultiplicativeDiscountCalculator(discountsRepository);
+//var discountCalculator = new AdditiveDiscountCalculator(discountsRepository);
+
 var expensesCalculater = new ExpensesCalculator(absoluteExpensesRepository, relativeExpensesRepository);
-DiscountCalculator.RelativeDiscountRate = 0.15;
+AdditiveDiscountCalculator.RelativeDiscountRate = 0.15;
 // adding data
 discountsRepository.Save(new(0.07, 12345, DiscountType.NonPreceeding));
 absoluteExpensesRepository.Save(new("Transport Cost", new(2.2)));
