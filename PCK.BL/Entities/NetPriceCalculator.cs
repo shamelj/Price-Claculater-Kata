@@ -8,11 +8,17 @@ namespace PCK.BL.Entities
         private IDiscountCalculator DiscountCalculator { get; init; }
         private IFlatTaxCalculator TaxCalculator { get; init; }
         private IReporter Reporter { get; init; }
-        public NetPriceCalculator(IDiscountCalculator discountCalculater, IFlatTaxCalculator taxCalculator, IReporter reporter)
+        public IExpensesCalculator ExpensesCalculator { get; private set; }
+
+        public NetPriceCalculator(IDiscountCalculator discountCalculater,
+                                  IFlatTaxCalculator taxCalculator,
+                                  IReporter reporter,
+                                  IExpensesCalculator expensesCalculator)
         {
             DiscountCalculator = discountCalculater;
             TaxCalculator = taxCalculator;
             Reporter = reporter;
+            ExpensesCalculator = expensesCalculator;
         }
 
         public Price CalculateNetPrice(Product product)
@@ -24,8 +30,12 @@ namespace PCK.BL.Entities
             var relativeDiscount = DiscountCalculator.CalculateRelativeDiscount(productWithNewPrice);
             var totalDiscount = preceedingDiscount + nonPreceedingDiscount + relativeDiscount;
             var flatTax = TaxCalculator.CalculateFlatTax(productWithNewPrice);
-            var netPrice = product.BasePrice - totalDiscount + flatTax;
-            Reporter.NetPrice(netPrice);
+            var absoluteExpenses = ExpensesCalculator.CalculateAbsoluteExpenses();
+            var relativeExpenses = ExpensesCalculator.CalculateRelativeExpenses(productWithNewPrice);
+            var totalExpenses = absoluteExpenses + relativeExpenses;
+            var netPrice = product.BasePrice - totalDiscount + flatTax + totalExpenses;
+            var allExpenses = ExpensesCalculator.AllExpenses(productWithNewPrice);
+            Reporter.Summary(product.BasePrice, flatTax, totalDiscount, allExpenses, netPrice);
             Reporter.Discounted(totalDiscount);
             return netPrice;
         }
