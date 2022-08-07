@@ -10,7 +10,7 @@
             {
                 if (value < 0.0)
                     throw new ArgumentException("Price can't be negative");
-                _value = Math.Round(value, 2);
+                _value = Math.Round(value, 4);
             }
         }
         public Price(double value) => Value = value;
@@ -53,9 +53,8 @@
         }
         public override string ToString()
         {
-            // Documentation for Currency format specifier (C)
-            //https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings#CFormatString
-            return Value.ToString("C");
+            // Using format specifier N2 to round to 2 decimal places.
+            return Value.ToString("N2") + "$";
         }
     }
 }
