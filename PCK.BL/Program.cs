@@ -10,15 +10,15 @@ var relativeExpensesRepository = new CacheRelativeExpensesRepository();
 
 
 // calculaters
-var capCalculator = new RelativeCapCalculator(0.2);
+var capCalculator = new RelativeCapCalculator(0.6);
 var taxCalculator = new TaxCalculator(); TaxCalculator.FlatRateTax = .21;
-var discountCalculator = new MultiplicativeDiscountCalculator(discountsRepository);
-//var discountCalculator = new AdditiveDiscountCalculator(discountsRepository);
+//var discountCalculator = new MultiplicativeDiscountCalculator(discountsRepository);
+var discountCalculator = new AdditiveDiscountCalculator(discountsRepository);
 
 var expensesCalculater = new ExpensesCalculator(absoluteExpensesRepository, relativeExpensesRepository);
-AdditiveDiscountCalculator.RelativeDiscountRate = 0.15;
+AdditiveDiscountCalculator.RelativeDiscountRate = new Discount(0.15,0,DiscountType.NonPreceeding);
 // adding data
-discountsRepository.Save(new(0.07, 12345, DiscountType.NonPreceeding));
+discountsRepository.Save(new(0.07, 12345, DiscountType.Preceeding));
 absoluteExpensesRepository.Save(new("Transport Cost", new(2.2)));
 relativeExpensesRepository.Save(new("Packaging Cost", .01));
 

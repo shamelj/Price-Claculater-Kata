@@ -5,6 +5,6 @@ namespace PCK.BL.Intefaces
 {
     public interface IRelativeDiscountCalculater
     {
-        Price CalculateRelativeDiscount(Product product);
+        Price CalculateRelativeDiscount(Price product);
     }
 }

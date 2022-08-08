@@ -28,19 +28,26 @@ namespace PCK.BL.Entities
         public Price CalculateNetPrice(Product product)
         {
             var cap = CapCalculator.CalculateCAP(product);
+
             var preceedingDiscount = DiscountCalculator.CalculatePreceedingDiscount(product);
             preceedingDiscount = preceedingDiscount > cap ? cap : preceedingDiscount;
+
             var basePriceWithPreceedingDiscount = product.BasePrice - preceedingDiscount;
             var productWithNewPrice = new Product(product) { BasePrice = basePriceWithPreceedingDiscount };
+
             var nonPreceedingDiscount = DiscountCalculator.CalculateNonPreceedingDiscount(productWithNewPrice);
-            var relativeDiscount = DiscountCalculator.CalculateRelativeDiscount(productWithNewPrice);
-            var totalDiscount = preceedingDiscount + nonPreceedingDiscount + relativeDiscount;
+
+            var totalDiscount = preceedingDiscount + nonPreceedingDiscount;
             totalDiscount = totalDiscount > cap ? cap : totalDiscount;
+
             var flatTax = TaxCalculator.CalculateFlatTax(productWithNewPrice);
+
             var absoluteExpenses = ExpensesCalculator.CalculateAbsoluteExpenses();
             var relativeExpenses = ExpensesCalculator.CalculateRelativeExpenses(productWithNewPrice);
             var totalExpenses = absoluteExpenses + relativeExpenses;
+
             var netPrice = product.BasePrice - totalDiscount + flatTax + totalExpenses;
+
             var allExpensesData = ExpensesCalculator.AllExpensesData(productWithNewPrice);
             Reporter.Summary(product.BasePrice, flatTax, totalDiscount, allExpensesData, netPrice);
             Reporter.Discounted(totalDiscount);
