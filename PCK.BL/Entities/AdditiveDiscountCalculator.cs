@@ -15,7 +15,8 @@ namespace PCK.BL.Entities
             var nonPreceedingDiscounts = discounts.Where((discount) => discount.Type == DiscountType.NonPreceeding);
             var totalDiscountsRate = nonPreceedingDiscounts.Sum((discount) => discount.Rate);
             var totalNonPreceedingDiscountAmount = new Price(totalDiscountsRate * product.BasePrice.Value);
-            return totalNonPreceedingDiscountAmount;
+            var relativeDiscount = CalculateRelativeDiscount(product.BasePrice);
+            return totalNonPreceedingDiscountAmount + relativeDiscount;
         }
         public override Price CalculatePreceedingDiscount(Product product)
         {
@@ -25,9 +26,9 @@ namespace PCK.BL.Entities
             var totalPreceedingDiscountAmount = new Price(totalDiscountsRate * product.BasePrice.Value);
             return totalPreceedingDiscountAmount;
         }
-        public override Price CalculateRelativeDiscount(Product product)
+        public override Price CalculateRelativeDiscount(Price price)
         {
-            var relativeDiscount = new Price(product.BasePrice.Value * RelativeDiscountRate);
+            var relativeDiscount = new Price(price.Value * RelativeDiscountRate.Rate);
             return relativeDiscount;
         }
     }
