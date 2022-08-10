@@ -16,7 +16,10 @@ namespace PCK.BL.Entities
             var priceAfterApplyingDiscounts = nonPreceedingDiscounts
                 .Aggregate(new Price(product.BasePrice),
                            (accumulatedPrice, discount) => new(accumulatedPrice.Value - accumulatedPrice.Value * discount.Rate));
-            var discountAmount = product.BasePrice - priceAfterApplyingDiscounts;
+            var relativeDiscount = new Price(0);
+            if (RelativeDiscount.Type == DiscountType.NonPreceeding)
+                relativeDiscount = CalculateRelativeDiscount(priceAfterApplyingDiscounts);
+            var discountAmount = (product.BasePrice - priceAfterApplyingDiscounts) + relativeDiscount;
             return discountAmount;
         }
         public override Price CalculatePreceedingDiscount(Product product)
@@ -27,13 +30,15 @@ namespace PCK.BL.Entities
             var priceAfterApplyingDiscounts = preceedingDiscounts
                 .Aggregate(new Price(product.BasePrice),
                            (accumulatedPrice, discount) => new(accumulatedPrice.Value - accumulatedPrice.Value * discount.Rate));
-            var relativeDiscount = CalculateRelativeDiscount(priceAfterApplyingDiscounts);
+            Price relativeDiscount = new(0);
+            if (RelativeDiscount.Type == DiscountType.NonPreceeding)
+                relativeDiscount = CalculateRelativeDiscount(priceAfterApplyingDiscounts);
             var discountAmount = (product.BasePrice - priceAfterApplyingDiscounts) + relativeDiscount;
             return discountAmount;
         }
         public override Price CalculateRelativeDiscount(Price price)
         {
-            var relativeDiscount = new Price(price.Value * RelativeDiscountRate.Rate);
+            var relativeDiscount = new Price(price.Value * RelativeDiscount.Rate);
             return relativeDiscount;
         }
     }

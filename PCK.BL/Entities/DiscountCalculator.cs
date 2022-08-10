@@ -5,7 +5,7 @@ namespace PCK.BL.Entities
 {
     public abstract class DiscountCalculator : IDiscountCalculator
     {
-        public static Discount RelativeDiscountRate { get; set; } = new Discount(0, 0, DiscountType.NonPreceeding);
+        public static Discount RelativeDiscount { get; set; } = new Discount(0, 0, DiscountType.NonPreceeding);
         protected IDiscountsRepository DiscountsRepository { get; init; }
         public DiscountCalculator(IDiscountsRepository discountsRepository)
         {
