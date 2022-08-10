@@ -1,1 +1,1 @@
-# Price Calculater Kata
+# Price Calculator Kata
