@@ -2,7 +2,7 @@
 {
     public abstract class Expense
     {
-        public string Description { get; set; }
+        public string Description { get; init; }
         protected Expense(string description)
         {
             this.Description = description;
