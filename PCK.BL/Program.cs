@@ -23,6 +23,6 @@ absoluteExpensesRepository.Save(new("Transport Cost", new(2.2)));
 relativeExpensesRepository.Save(new("Packaging Cost", .01));
 
 // Reporter
-var reporter = new Reporter();
+var reporter = new Reporter(Currencies.USD);
 var netPriceCalculator = new NetPriceCalculator(discountCalculator, taxCalculator, reporter, expensesCalculater,capCalculator);
 netPriceCalculator.CalculateNetPrice(book);
